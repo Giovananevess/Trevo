@@ -24,7 +24,7 @@ public class CultureRepositoryTest {
     CultureRepository cultureRepository;
 
     @Test
-    public void whenCreate_thenPersistenseData() {
+    public void whenCreateCulture_thenPersistenseData() {
         Culture culture = new Culture(new DadosCadastroCultureDTO("Culture"));
         cultureRepository.save(culture);
         assertThat(culture.getId()).isNotNull();
@@ -32,7 +32,7 @@ public class CultureRepositoryTest {
     }
 
     @Test
-    public void whenUpdate_thenPersistenseData() {
+    public void whenUpdateName_thenPersistenseData() {
         Culture culture = new Culture(new DadosCadastroCultureDTO("Culture2"));
         cultureRepository.save(culture);
         culture.setName("Culture10");
@@ -41,7 +41,7 @@ public class CultureRepositoryTest {
     }
 
     @Test
-    public void whenList_theSearchProduct() {
+    public void whenList_theSearchCulture() {
         Culture culture = new Culture(new DadosCadastroCultureDTO("Teste2"));
         cultureRepository.save(culture);
         Optional<Culture> all = cultureRepository.findById(culture.getId());
@@ -49,8 +49,8 @@ public class CultureRepositoryTest {
     }
 
     @Test
-    @DisplayName(value = "deve deletar uma area")
-    public void whenDelete_theDeleteArea() {
+    @DisplayName(value = "deve deletar uma Cultura")
+    public void whenDelete_theDeleteCulture() {
         Culture culture = new Culture(new DadosCadastroCultureDTO("Culture3"));
         cultureRepository.save(culture);
         cultureRepository.deleteById(culture.getId());

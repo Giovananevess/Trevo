@@ -23,7 +23,7 @@ public class ProductRepositoryTest {
     ProductRepository productRepository;
 
     @Test
-    public void whenCreate_thenPersistenseData() {
+    public void whenCreateProduct_thenPersistenseData() {
         Product product = new Product(new DadosCadastroProductDTO("Teste2", "Esse produto é um pulverizador",
                 null, null, null));
         productRepository.save(product);
@@ -32,7 +32,7 @@ public class ProductRepositoryTest {
         assertThat(product.getDescricao()).isEqualTo("Esse produto é um pulverizador");
     }
     @Test
-    public void whenUpdate_thenPersistenseData() {
+    public void whenUpdatename_thenPersistenseData() {
         Product product = new Product(new DadosCadastroProductDTO("Frutas", "Esse produto é um pulverizador",
                 null, null, null));
         productRepository.save(product);

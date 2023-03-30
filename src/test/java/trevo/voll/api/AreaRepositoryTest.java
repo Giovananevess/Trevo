@@ -13,23 +13,23 @@ import trevo.voll.api.area.AreaRepository;
 import trevo.voll.api.area.DadosCadastroAreaDTO;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
+
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-
 public class AreaRepositoryTest {
     @Autowired
     AreaRepository areaRepository;
 
     @Test
-    public void whenCreate_thenPersistenseData() {
+    public void whenCreateArea_thenPersistenseData() {
         Area area = new Area(new DadosCadastroAreaDTO("Area1"));
         areaRepository.save(area);
         assertThat(area.getId()).isNotNull();
         assertThat(area.getName()).isEqualTo("Area1");
     }
     @Test
-    public void whenUpdate_thenPersistenseData() {
+    public void whenUpdateName_thenPersistenseData() {
         Area area = new Area(new DadosCadastroAreaDTO("Area2"));
         areaRepository.save(area);
         area.setName("Area10");
@@ -39,7 +39,7 @@ public class AreaRepositoryTest {
 
 
     @Test
-    public void whenList_theSearchProduct() {
+    public void whenList_theSearchArea() {
         Area area = new Area(new DadosCadastroAreaDTO("Teste3"));
         areaRepository.save(area);
         Optional<Area> all = areaRepository.findById(area.getId());

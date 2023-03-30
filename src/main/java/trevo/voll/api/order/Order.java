@@ -3,10 +3,7 @@ package trevo.voll.api.order;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import trevo.voll.api.area.DadosCadastroAreaDTO;
@@ -19,6 +16,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +44,13 @@ public class Order {
         this.email = dto.email();
         this.telefone = dto.telefone();
     }
+
+    public Order(DadosCadastroOrderDTO dto) {
+        this.name = dto.name();
+        this.email = dto.email();
+        this.telefone = dto.telefone();
+    }
+
 
     public void atualizar(DadosCadastroOrderDTO dto) {
         if (dto.name() != null) {
