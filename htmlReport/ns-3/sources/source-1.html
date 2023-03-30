@@ -1,0 +1,148 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AreaController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">trevo.voll.api.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: AreaController (trevo.voll.api.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AreaController</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">AreaController$$SpringCGLIB$$0</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package trevo.voll.api.controller;
+&nbsp;
+&nbsp;import jakarta.transaction.Transactional;
+&nbsp;import jakarta.validation.Valid;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;import trevo.voll.api.area.AreaService;
+&nbsp;import trevo.voll.api.area.DadosCadastroAreaDTO;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;area&quot;)
+&nbsp;
+<b class="fc">&nbsp;public class AreaController {</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    AreaService areaService;
+&nbsp;
+&nbsp;    @PostMapping
+&nbsp;    public ResponseEntity&lt;?&gt; cadastrar(@RequestBody @Valid DadosCadastroAreaDTO dto) {
+<b class="nc">&nbsp;        return areaService.register(dto);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping
+<b class="nc">&nbsp;    public ResponseEntity&lt;?&gt; listar() { return areaService.list(); }</b>
+&nbsp;
+&nbsp;    @DeleteMapping(&quot;/delete/{id}&quot;)
+<b class="nc">&nbsp;    public ResponseEntity&lt;?&gt; deletar(@PathVariable Long id) { return areaService.delete(id); }</b>
+&nbsp;
+&nbsp;    @PutMapping(&quot;/atualizar/{id}&quot;)
+&nbsp;    @Transactional
+&nbsp;    public ResponseEntity&lt;?&gt; atualizar(@PathVariable Long id, @RequestBody @Valid DadosCadastroAreaDTO dto) {
+<b class="nc">&nbsp;        return areaService.update(id, dto);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-30 09:59</div>
+</div>
+</body>
+</html>

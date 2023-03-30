@@ -1,0 +1,160 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AreaService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">trevo.voll.api.area</a>
+</div>
+
+<h1>Coverage Summary for Class: AreaService (trevo.voll.api.area)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AreaService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    4,5%
+  </span>
+  <span class="absValue">
+    (1/22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package trevo.voll.api.area;
+&nbsp;
+&nbsp;import jakarta.validation.Valid;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import org.springframework.web.bind.annotation.PathVariable;
+&nbsp;import org.springframework.web.bind.annotation.RequestBody;
+&nbsp;import trevo.voll.api.response.ResponseModelMessage;
+&nbsp;import trevo.voll.api.response.ResponseModelObject;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+<b class="fc">&nbsp;public class AreaService {</b>
+&nbsp;    @Autowired
+&nbsp;    AreaRepository areaRepository;
+&nbsp;
+&nbsp;    public ResponseEntity&lt;?&gt; register(@RequestBody DadosCadastroAreaDTO dto) {
+<b class="nc">&nbsp;        if (areaRepository.existsByName(dto.name())) {</b>
+<b class="nc">&nbsp;            return new ResponseEntity&lt;&gt;(new ResponseModelMessage(&quot;Area já existe&quot;), HttpStatus.BAD_REQUEST);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        Area area = new Area(dto);</b>
+<b class="nc">&nbsp;        areaRepository.save(area);</b>
+<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(new ResponseModelObject(&quot;Area cadastrada&quot;, area), HttpStatus.CREATED);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ResponseEntity&lt;?&gt; list() {
+<b class="nc">&nbsp;        List&lt;Area&gt; areas = areaRepository.findAll();</b>
+<b class="nc">&nbsp;        if (areas.isEmpty()) {</b>
+<b class="nc">&nbsp;            return new ResponseEntity&lt;&gt;(new ResponseModelMessage(&quot;Lista de Area está vazia&quot;), HttpStatus.BAD_REQUEST);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(new ResponseModelObject(&quot;Lista de area&quot;, areas), HttpStatus.OK);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ResponseEntity&lt;?&gt; delete(@PathVariable Long id) {
+<b class="nc">&nbsp;        if (areaRepository.existsById(id)) {</b>
+<b class="nc">&nbsp;            areaRepository.deleteById(id);</b>
+<b class="nc">&nbsp;            return new ResponseEntity&lt;&gt;(new ResponseModelMessage(&quot;Area deletada&quot;), HttpStatus.OK);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(new ResponseModelMessage(&quot;Area não encontrada&quot;), HttpStatus.BAD_REQUEST);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ResponseEntity&lt;?&gt; update(@PathVariable Long id, @RequestBody @Valid DadosCadastroAreaDTO dto) {
+<b class="nc">&nbsp;        Area area = areaRepository.findById(id).orElse(null);</b>
+<b class="nc">&nbsp;        if (areaRepository.existsByName(dto.name())) {</b>
+<b class="nc">&nbsp;            return new ResponseEntity&lt;&gt;(new ResponseModelMessage(&quot;Area com o nome &quot; + dto.name() + &quot; já existe&quot;), HttpStatus.BAD_REQUEST);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        if (!areaRepository.existsById(id) || area == null) {</b>
+<b class="nc">&nbsp;            return new ResponseEntity&lt;&gt;(new ResponseModelMessage(&quot;Area não encontrada&quot;), HttpStatus.BAD_REQUEST);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        area.update(dto);</b>
+<b class="nc">&nbsp;        areaRepository.save(area);</b>
+<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(new ResponseModelObject(&quot;Area atualizado&quot;, area), HttpStatus.OK);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-30 09:59</div>
+</div>
+</body>
+</html>

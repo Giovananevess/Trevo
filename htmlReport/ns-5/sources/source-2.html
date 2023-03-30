@@ -1,0 +1,161 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ImageService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">trevo.voll.api.image</a>
+</div>
+
+<h1>Coverage Summary for Class: ImageService (trevo.voll.api.image)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ImageService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33,3%
+  </span>
+  <span class="absValue">
+    (2/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    10%
+  </span>
+  <span class="absValue">
+    (2/20)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package trevo.voll.api.image;
+&nbsp;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;import org.springframework.web.bind.annotation.PathVariable;
+&nbsp;import org.springframework.web.bind.annotation.RequestParam;
+&nbsp;import org.springframework.web.multipart.MultipartFile;
+&nbsp;import trevo.voll.api.response.ResponseModelMessage;
+&nbsp;import trevo.voll.api.response.ResponseModelObject;
+&nbsp;import java.io.IOException;
+&nbsp;import java.util.List;
+&nbsp;
+<b class="fc">&nbsp;@Service</b>
+<b class="fc">&nbsp;public class ImageService {</b>
+&nbsp;    @Autowired
+&nbsp;    private ImageRepository imageRepository;
+&nbsp;
+&nbsp;    public ResponseEntity&lt;?&gt; uploadImage(@RequestParam MultipartFile photo) throws IOException {
+<b class="nc">&nbsp;        if (imageRepository.existsByName(photo.getOriginalFilename())) {</b>
+<b class="nc">&nbsp;            return new ResponseEntity&lt;&gt; (new ResponseModelMessage(&quot;Imagem &quot; + photo.getOriginalFilename() + &quot; já existe&quot;), HttpStatus.BAD_REQUEST);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        Image image = imageRepository.save(Image.builder()</b>
+<b class="nc">&nbsp;                .name(photo.getOriginalFilename())</b>
+<b class="nc">&nbsp;                .type(photo.getContentType())</b>
+<b class="nc">&nbsp;                .imageData(ImageUtils.compressImage(photo.getBytes())).build());</b>
+<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(new ResponseModelObject(&quot;Imagem salva foi salva nome : &quot; + image.getName(), image), HttpStatus.OK);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ResponseEntity&lt;?&gt; listImages() {
+<b class="nc">&nbsp;        List&lt;Image&gt; images = imageRepository.findAll();</b>
+<b class="nc">&nbsp;        if (images.isEmpty()) {</b>
+<b class="nc">&nbsp;            return new ResponseEntity&lt;&gt;(new ResponseModelMessage(&quot;Não existem imagens cadastradas&quot;), HttpStatus.BAD_REQUEST);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return new ResponseEntity&lt;&gt;(new ResponseModelObject(&quot;Lista de imagens&quot;, images), HttpStatus.OK);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public byte[] downloadImage(@PathVariable Long id) {
+<b class="nc">&nbsp;        Image dbImageData = imageRepository.findById(id).orElse(null);</b>
+<b class="nc">&nbsp;        assert dbImageData != null;</b>
+<b class="nc">&nbsp;        return ImageUtils.decompressImage(dbImageData.getImageData());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public ResponseEntity&lt;?&gt; delete(@PathVariable Long id) {
+&nbsp;//        Image image = imageRepository.findById(id).orElse(null);
+<b class="nc">&nbsp;        if (!imageRepository.existsById(id)) {</b>
+<b class="nc">&nbsp;            return new ResponseEntity&lt;&gt;(new ResponseModelMessage(&quot;Não existe imagem com esse ID&quot;), HttpStatus.BAD_REQUEST);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        imageRepository.deleteById(id);</b>
+&nbsp;//        List&lt;Product&gt; productList = productRepository.findByImages(image);
+&nbsp;//        if (productList.isEmpty()) {
+&nbsp;//            imageRepository.deleteById(id);
+&nbsp;//        }
+<b class="nc">&nbsp;            return new ResponseEntity&lt;&gt;(new ResponseModelMessage(&quot;Imagem não excluida&quot;), HttpStatus.OK);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-30 09:59</div>
+</div>
+</body>
+</html>

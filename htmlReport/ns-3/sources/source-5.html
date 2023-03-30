@@ -1,0 +1,159 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ProductController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">trevo.voll.api.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductController (trevo.voll.api.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ProductController</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ProductController$$SpringCGLIB$$0</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    20%
+  </span>
+  <span class="absValue">
+    (1/5)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package trevo.voll.api.controller;
+&nbsp;
+&nbsp;
+&nbsp;import jakarta.transaction.Transactional;
+&nbsp;import jakarta.validation.Valid;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.MediaType;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;import trevo.voll.api.product.*;
+&nbsp;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;product&quot;)
+&nbsp;
+<b class="fc">&nbsp;public class ProductController {</b>
+&nbsp;
+&nbsp;    @Autowired
+&nbsp;    ProductService productService;
+&nbsp;
+&nbsp;    @PostMapping(value = &quot;/cadastrar&quot;, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+&nbsp;    public ResponseEntity&lt;?&gt; cadastrar(@RequestBody @Valid DadosCadastroProductDTO dto) {
+<b class="nc">&nbsp;        return productService.register(dto);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping
+&nbsp;    public ResponseEntity&lt;?&gt; listar() {
+<b class="nc">&nbsp;        return productService.list();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @DeleteMapping(&quot;/delete/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;?&gt; deletar(@PathVariable Long id) {
+<b class="nc">&nbsp;        return productService.delete(id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @PutMapping(&quot;/atualizar/{id}&quot;)
+&nbsp;    @Transactional
+&nbsp;    public ResponseEntity&lt;?&gt; atualizar(@PathVariable Long id, @RequestBody @Valid DadosCadastroProductDTO dto) {
+<b class="nc">&nbsp;        return productService.update(id, dto);</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-03-30 09:59</div>
+</div>
+</body>
+</html>
