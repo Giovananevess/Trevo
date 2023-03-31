@@ -19,24 +19,24 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping(value = "/cadastrar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> cadastrar(@RequestBody @Valid DadosCadastroProductDTO dto) {
+    public ResponseEntity<?> register(@RequestBody @Valid DadosCadastroProductDTO dto) {
         return productService.register(dto);
     }
 
     @GetMapping
-    public ResponseEntity<?> listar() {
+    public ResponseEntity<?> list() {
         return productService.list();
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletar(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         return productService.delete(id);
     }
 
 
     @PutMapping("/atualizar/{id}")
     @Transactional
-    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid DadosCadastroProductDTO dto) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid DadosCadastroProductDTO dto) {
         return productService.update(id, dto);
     }
 }

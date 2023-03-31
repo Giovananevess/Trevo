@@ -39,7 +39,7 @@ public class CultureService {
             cultureRepository.deleteById(id);
             return new ResponseEntity<>(new ResponseModelMessage("Cultura deletada"), HttpStatus.OK);
         }
-        return new ResponseEntity<>(new ResponseModelMessage("Culura não encontrada"), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ResponseModelMessage("Cultura não encontrada"), HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid DadosCadastroCultureDTO dto) {

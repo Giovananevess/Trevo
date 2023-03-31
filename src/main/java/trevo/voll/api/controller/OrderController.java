@@ -17,23 +17,23 @@ public class OrderController {
     OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<?> cadastrar(@RequestBody @Valid DadosCadastroOrderDTO dto) {
+    public ResponseEntity<?> register(@RequestBody @Valid DadosCadastroOrderDTO dto) {
         return orderService.register(dto);
     }
 
     @GetMapping
-    public ResponseEntity<?> listar() {
+    public ResponseEntity<?> list() {
         return orderService.list();
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletar(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         return orderService.delete(id);
     }
 
     @PutMapping("/atualizar/{id}")
     @Transactional
-    public ResponseEntity<?> atulizar(@PathVariable Long id, @RequestBody @Valid DadosCadastroOrderDTO dto) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid DadosCadastroOrderDTO dto) {
         return orderService.update(id, dto);
     }
 }

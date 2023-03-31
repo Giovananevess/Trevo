@@ -17,19 +17,19 @@ public class AreaController {
     AreaService areaService;
 
     @PostMapping
-    public ResponseEntity<?> cadastrar(@RequestBody @Valid DadosCadastroAreaDTO dto) {
+    public ResponseEntity<?> register(@RequestBody @Valid DadosCadastroAreaDTO dto) {
         return areaService.register(dto);
     }
 
     @GetMapping
-    public ResponseEntity<?> listar() { return areaService.list(); }
+    public ResponseEntity<?> list() { return areaService.list(); }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deletar(@PathVariable Long id) { return areaService.delete(id); }
+    public ResponseEntity<?> delete(@PathVariable Long id) { return areaService.delete(id); }
 
     @PutMapping("/atualizar/{id}")
     @Transactional
-    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid DadosCadastroAreaDTO dto) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid DadosCadastroAreaDTO dto) {
         return areaService.update(id, dto);
     }
 }
