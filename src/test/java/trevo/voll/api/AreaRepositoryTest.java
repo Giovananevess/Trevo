@@ -47,7 +47,7 @@ public class AreaRepositoryTest {
     }
 
     @Test
-    @DisplayName(value = "deve deletar uma area")
+    @DisplayName(value = "Deve deletar uma area")
     public void whenDelete_theDeleteArea() {
         Area area = new Area(new DadosCadastroAreaDTO("Teste3"));
         areaRepository.save(area);

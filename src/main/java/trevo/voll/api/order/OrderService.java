@@ -11,7 +11,6 @@ import trevo.voll.api.product.Product;
 import trevo.voll.api.product.ProductRepository;
 import trevo.voll.api.response.ResponseModelMessage;
 import trevo.voll.api.response.ResponseModelObject;
-
 import java.util.List;
 
 @Service
@@ -24,8 +23,8 @@ public class OrderService {
 
     public ResponseEntity<?> register(@RequestBody DadosCadastroOrderDTO dto) {
         List<Product> products = productRepository.findByIdIn(dto.productIds());
-        if (orderRepository.existsByName(dto.name())) {
-            return new ResponseEntity<>(new ResponseModelMessage("Essa requisição já existe"), HttpStatus.BAD_REQUEST);
+        if (products.isEmpty()) {
+            return new ResponseEntity<>(new ResponseModelMessage("É necessário informar ao menos um produto"), HttpStatus.BAD_REQUEST);
         }
         Order order = new Order(dto, products);
         orderRepository.save(order);

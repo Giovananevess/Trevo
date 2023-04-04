@@ -9,7 +9,7 @@ public record DadosCadastroProductDTO(
         String name,
 
         @NotEmpty(message = "o campo não pode estar vazio")
-        String descricao,
+        String description,
 
         @JsonProperty("areas")
         List<Long> areaIds,

@@ -49,7 +49,7 @@ public class CultureRepositoryTest {
     }
 
     @Test
-    @DisplayName(value = "deve deletar uma Cultura")
+    @DisplayName(value = "Deve deletar uma Cultura")
     public void whenDelete_theDeleteCulture() {
         Culture culture = new Culture(new DadosCadastroCultureDTO("Culture3"));
         cultureRepository.save(culture);

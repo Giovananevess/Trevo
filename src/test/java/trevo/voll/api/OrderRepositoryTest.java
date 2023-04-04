@@ -12,7 +12,6 @@ import trevo.voll.api.order.DadosCadastroOrderDTO;
 import trevo.voll.api.order.Order;
 import trevo.voll.api.order.OrderRepository;
 import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
@@ -61,7 +60,7 @@ public class OrderRepositoryTest {
     }
 
     @Test
-    @DisplayName(value = "deve deletar um produto de deletar")
+    @DisplayName(value = "deve deletar um produto")
     public void whenDelete_theDeleteOrder() {
         Order order = new Order(new DadosCadastroOrderDTO("Teste2", "giovanaaa@gmail.com",
                 null, null));
