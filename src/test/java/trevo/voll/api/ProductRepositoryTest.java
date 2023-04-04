@@ -29,7 +29,7 @@ public class ProductRepositoryTest {
         productRepository.save(product);
         assertThat(product.getId()).isNotNull();
         assertThat(product.getName()).isEqualTo("Teste2");
-        assertThat(product.getDescricao()).isEqualTo("Esse produto é um pulverizador");
+        assertThat(product.getDescription()).isEqualTo("Esse produto é um pulverizador");
     }
     @Test
     public void whenUpdatename_thenPersistenseData() {
@@ -45,9 +45,9 @@ public class ProductRepositoryTest {
         Product product = new Product(new DadosCadastroProductDTO("Teste2", "Esse produto é um pulverizador",
                 null, null, null));
         productRepository.save(product);
-        product.setDescricao("Esse produto");
+        product.setDescription("Esse produto");
         productRepository.save(product);
-        assertThat(product.getDescricao()).isEqualTo("Esse produto");
+        assertThat(product.getDescription()).isEqualTo("Esse produto");
     }
     @Test
     public void whenList_theSearchProduct() {
@@ -59,7 +59,7 @@ public class ProductRepositoryTest {
 
     }
     @Test
-    @DisplayName(value = "deve deletar um produto de deletar")
+    @DisplayName(value = "Deve deletar um produto")
     public void whenDelete_theDeleteProduct() {
         Product product = new Product(new DadosCadastroProductDTO("Teste3", "Esse produto é um pulverizador",
                 null, null, null));

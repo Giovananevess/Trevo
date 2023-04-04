@@ -6,7 +6,6 @@ import lombok.*;
 import trevo.voll.api.area.Area;
 import trevo.voll.api.culture.Culture;
 import trevo.voll.api.image.Image;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class Product {
     @Column(name = "name", unique = true, nullable = false)
     private String name;
     @Column(nullable = false, columnDefinition = "Text")
-    private String descricao;
+    private String description;
     private LocalDate data;
     private Boolean status;
 
@@ -54,12 +53,10 @@ public class Product {
     )
     private List<Image> images;
 
-
-// construtor para cadastrar um produto
     public Product(DadosCadastroProductDTO dto, List<Culture> cultures, List<Area> areas, List<Image> images) {
         this.name = dto.name();
         this.data = LocalDate.now();
-        this.descricao = dto.descricao();
+        this.description = dto.description();
         this.cultures = cultures;
         this.areas = areas;
         this.images = images;
@@ -68,15 +65,15 @@ public class Product {
 
     public Product(DadosCadastroProductDTO dto) {
         this.name = dto.name();
-        this.descricao = dto.descricao();
+        this.description = dto.description();
     }
 
     public void update(DadosCadastroProductDTO dto) {
         if (dto.name() != null) {
             this.name = dto.name();
         }
-        if (dto.descricao() != null) {
-            this.descricao = dto.descricao();
+        if (dto.description() != null) {
+            this.description = dto.description();
         }
     }
 }
